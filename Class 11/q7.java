@@ -9,28 +9,37 @@ public class q7 {
 	}
 	
 	public static int[] findTargetIndex(int[] nums,int target) {
-		int[] ans= new int[] {-1,-1};
-		int f=0;
-		int l=nums.length-1;
-		int mid;
-		while (f<=l) {
-			mid=(f+l)/2;
-			if(nums[mid]==target) {
-				if(nums[mid-1]==target) {
-					ans[0]=mid-1;
-					ans[1]=mid;
-				}
-				if(nums[mid+1]==target) {
-					ans[0]=mid;
-					ans[1]=mid+1;
-				}
-			}
-			if(nums[mid]<target)
-				f=mid+1;
-			else
-				l=mid-1;
-		}
-		return ans;
+		int[] output = {-1,-1};
+
+        int left = 0 ;
+        int right = nums.length - 1;
+        
+
+        while (left <= right){
+           if(nums[left] == target){
+               output[0] = left;
+
+               while (left < right){
+                   if(nums[right] == target){
+                       output[1] = right;
+                       return output;
+                   } else {
+                       right = right - 1;
+                   }
+               }
+
+               output[1] = left;
+               return output;
+
+           } 
+           else if(nums[left] < target){
+               left = left + 1;
+           } 
+           else if(nums[right] > target){
+               right = right - 1;
+           }
+        }
+        return output;
 	}
 	
 
