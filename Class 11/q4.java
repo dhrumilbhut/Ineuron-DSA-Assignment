@@ -6,14 +6,17 @@ public class q4 {
 	}
 
 	public static int findRepeatedNumber(int[] nums) {
-		int[] arr = new int[nums.length];
-		for (int i = 0; i < nums.length; i++) {
-			arr[nums[i]]++;
-		}
-		for (int i = 0; i < arr.length; i++) {
-			if(arr[i]==2)
-				return i;
-		}
-		return -1;
+		 Arrays.sort(nums);
+	        int cur = nums[0];
+	        int ans = cur;
+	
+	        for (int i=1; i<nums.length; i++){
+	            if(nums[i] == cur){
+	                ans = nums[i];
+	                break;
+	            }
+	            cur = nums[i];
+	        }
+	        return ans;
 	}
 }
